@@ -2,8 +2,6 @@ FROM php:fpm
 
 MAINTAINER jack "958691165@qq.com"
 
-#设置用户
-
 RUN mkdir -p /data
 
 #时区设置
