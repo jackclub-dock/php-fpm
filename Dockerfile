@@ -16,7 +16,6 @@ RUN pear config-set php_ini /usr/local/etc/php/php.ini
 RUN pecl config-set php_ini /usr/local/etc/php/php.ini
 
 #php-redis
-
 RUN echo "\n\n" | pecl install -f redis
 
 RUN docker-php-ext-enable redis
