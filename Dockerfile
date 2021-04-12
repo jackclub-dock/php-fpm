@@ -38,8 +38,6 @@ RUN docker-php-ext-install -j$(nproc) opcache
 
 RUN apt install -y zip libzip-dev && docker-php-ext-install -j$(nproc) zip
 
-ADD xdebug.ini /usr/local/etc/php/conf.d/
-
 RUN mkdir -p /var/log/php
 
 RUN usermod -u 1000 www-data
