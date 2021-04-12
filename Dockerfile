@@ -20,7 +20,6 @@ RUN echo "\n\n" | pecl install -f redis
 RUN docker-php-ext-enable redis
 
 #php-gd
-
 RUN apt update
 RUN apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
 RUN docker-php-ext-install -j$(nproc) iconv
