@@ -15,12 +15,11 @@ ADD php-fpm.d/www.conf /usr/local/etc/php-fpm.d/
 RUN pear config-set php_ini /usr/local/etc/php/php.ini
 RUN pecl config-set php_ini /usr/local/etc/php/php.ini
 
-#php-redis && xdebug
+#php-redis
 
 RUN echo "\n\n" | pecl install -f redis
 
-RUN pecl install xdebug-beta
-RUN docker-php-ext-enable redis xdebug
+RUN docker-php-ext-enable redis
 
 #php-gd
 RUN apt update
