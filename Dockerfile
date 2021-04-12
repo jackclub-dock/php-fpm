@@ -14,17 +14,17 @@ ADD php-fpm.d/www.conf /usr/local/etc/php-fpm.d/
 RUN pear config-set php_ini /usr/local/etc/php/php.ini
 RUN pecl config-set php_ini /usr/local/etc/php/php.ini
 
-#php-redis
-RUN echo "\n\n" | pecl install -f redis
-
-RUN docker-php-ext-enable redis
-
 #php-gd
 RUN apt-get update
 RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
 RUN docker-php-ext-install -j$(nproc) gd --with-freetype --with-jpeg
 RUN docker-php-ext-install -j$(nproc) iconv
 RUN docker-php-ext-install -j$(nproc) exif
+
+#php-redis
+RUN echo "\n\n" | pecl install -f redis
+
+RUN docker-php-ext-enable redis
 
 #php-pdo-mysql
 RUN docker-php-ext-install -j$(nproc) pdo_mysql
