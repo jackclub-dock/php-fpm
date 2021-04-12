@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:7.2-fpm
 
 MAINTAINER jack "958691165@qq.com"
 
