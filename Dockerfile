@@ -24,8 +24,8 @@ RUN apt update
 RUN apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
 RUN docker-php-ext-install -j$(nproc) iconv
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
-RUN docker-php-ext-install -j$(nproc) exif
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install -j$(nproc) exif
 
 #php-pdo-mysql
 RUN docker-php-ext-install -j$(nproc) pdo_mysql
