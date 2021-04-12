@@ -11,7 +11,6 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
 ADD php.ini /usr/local/etc/php/
 ADD php-fpm.conf /usr/local/etc/
 ADD php-fpm.d/www.conf /usr/local/etc/php-fpm.d/
-
 RUN pear config-set php_ini /usr/local/etc/php/php.ini
 RUN pecl config-set php_ini /usr/local/etc/php/php.ini
 
