@@ -20,12 +20,15 @@ RUN echo "\n\n" | pecl install -f redis
 RUN docker-php-ext-enable redis
 
 #php-gd
-RUN apt update
-RUN apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
+
 RUN docker-php-ext-install -j$(nproc) iconv
 RUN docker-php-ext-install -j$(nproc) exif
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
 
 #php-pdo-mysql
 RUN docker-php-ext-install -j$(nproc) pdo_mysql
