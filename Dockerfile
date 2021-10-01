@@ -1,4 +1,4 @@
-FROM laradock/php-fpm:latest-7.2
+FROM laradock/php-fpm:latest-8.0
 
 MAINTAINER jack "958691165@qq.com"
 
