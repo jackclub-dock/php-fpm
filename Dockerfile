@@ -24,6 +24,7 @@ fi \
 # Install Php Xdebug Extension
 RUN pecl install xdebug-beta
 RUN docker-php-ext-enable redis xdebug
+ADD xdebug.ini /usr/local/etc/php/conf.d/
 
 #php-mysql
 RUN docker-php-ext-install mysqli
