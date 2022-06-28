@@ -21,8 +21,12 @@ fi \
 && rm -rf /tmp/pear \
 && docker-php-ext-enable redis
 
+# Install Php Xdebug Extension
+RUN pecl install xdebug-beta
+RUN docker-php-ext-enable redis xdebug
+
 #php-mysql
-RUN  docker-php-ext-install mysqli
+RUN docker-php-ext-install mysqli
 #php-bcmath
 RUN docker-php-ext-install bcmath
 #php-opcache
