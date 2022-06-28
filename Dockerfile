@@ -55,3 +55,4 @@ WORKDIR /var/www
 CMD ["php-fpm"]
 
 EXPOSE 9000
+
