@@ -37,27 +37,28 @@ COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 ARG INSTALL_IMAGEMAGICK=true
 ARG IMAGEMAGICK_VERSION=latest
 
-RUN if [ ${INSTALL_IMAGEMAGICK} = true ]; then \
-    apt-get install -yqq libmagickwand-dev imagemagick && \
-    if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
-      cd /tmp && \
-      if [ ${IMAGEMAGICK_VERSION} = "latest" ]; then \
-        git clone https://github.com/Imagick/imagick; \
+RUN \
+    if [ ${INSTALL_IMAGEMAGICK} = true ]; then \
+      apt-get install -yqq libmagickwand-dev imagemagick && \
+      if [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
+        cd /tmp && \
+        if [ ${IMAGEMAGICK_VERSION} = "latest" ]; then \
+          git clone https://github.com/Imagick/imagick; \
+        else \
+          git clone --branch ${IMAGEMAGICK_VERSION} https://github.com/Imagick/imagick; \
+        fi && \
+        cd imagick && \
+        phpize && \
+        ./configure && \
+        make && \
+        make install && \
+        rm -r /tmp/imagick; \
       else \
-        git clone --branch ${IMAGEMAGICK_VERSION} https://github.com/Imagick/imagick; \
+        pecl install imagick; \
       fi && \
-      cd imagick && \
-      phpize && \
-      ./configure && \
-      make && \
-      make install && \
-      rm -r /tmp/imagick; \
-    else \
-      pecl install imagick; \
-    fi && \
-    docker-php-ext-enable imagick; \
-    php -m | grep -q 'imagick' \
-;fi
+      docker-php-ext-enable imagick; \
+      php -m | grep -q 'imagick' \
+    ;fi
 
 RUN apt update && apt install -y zip libzip-dev && docker-php-ext-install -j$(nproc) zip
 
