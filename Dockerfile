@@ -21,6 +21,8 @@ fi \
 && rm -rf /tmp/pear \
 && docker-php-ext-enable redis
 
+#php-opcache
+RUN docker-php-ext-install pcntl
 #php-mysql
 RUN  docker-php-ext-install mysqli
 #php-bcmath
