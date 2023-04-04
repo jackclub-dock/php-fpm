@@ -38,6 +38,9 @@ RUN apt-get install -y libmagickwand-dev; \
     pecl install imagick; \
     docker-php-ext-enable imagick;
 
+# Install Nodejs
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+
 RUN mkdir -p /var/log/php
 
 RUN groupmod -o -g 1000 www-data && \
