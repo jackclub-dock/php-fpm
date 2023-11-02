@@ -24,7 +24,7 @@ fi \
 #php-pcntl
 RUN docker-php-ext-install pcntl
 #php-mysql
-RUN  docker-php-ext-install mysqli
+RUN docker-php-ext-install mysqli
 #php-bcmath
 RUN docker-php-ext-install bcmath
 #php-opcache
@@ -32,6 +32,11 @@ RUN docker-php-ext-install opcache
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 RUN apt update && apt install -y zip libzip-dev && docker-php-ext-install -j$(nproc) zip
+
+#php-imagick
+RUN apt-get install -y libmagickwand-dev; \
+    pecl install imagick; \
+    docker-php-ext-enable imagick;
 
 RUN mkdir -p /var/log/php
 
