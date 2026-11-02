@@ -1,4 +1,4 @@
-FROM laradock/php-fpm:latest-8.1
+FROM laradock/php-fpm:latest-8.5
 
 MAINTAINER jack "958691165@qq.com"
 
@@ -22,7 +22,7 @@ fi \
 && docker-php-ext-enable redis
 
 # Install Php Xdebug Extension
-RUN pecl install xdebug-beta
+RUN pecl install xdebug
 RUN docker-php-ext-enable redis xdebug
 ADD xdebug.ini /usr/local/etc/php/conf.d/
 
