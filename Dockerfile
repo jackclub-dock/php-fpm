@@ -37,7 +37,7 @@ RUN groupmod -o -g 1000 www-data && \
 # Clean up
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    rm /var/log/lastlog /var/log/faillog
+    rm -f /var/log/lastlog /var/log/faillog
 
 # Configure locale.
 ARG LOCALE=POSIX
