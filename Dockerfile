@@ -27,8 +27,6 @@ RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install mysqli
 #php-bcmath
 RUN docker-php-ext-install bcmath
-#php-opcache
-RUN docker-php-ext-install opcache
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
 RUN apt update && apt install -y zip libzip-dev && docker-php-ext-install -j$(nproc) zip
